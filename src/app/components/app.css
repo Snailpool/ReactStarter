@@ -1,0 +1,29 @@
+.header{
+	background-color:#2196F3; /* fallback color if gradients are not supported */
+    padding: 0 50px;
+    height: 70px;
+}
+.container{
+	height:100%;
+	padding:10px;
+	background-color: #F5F5F5;
+}
+.logo{
+	display: inline-block;
+	width:20%;
+}
+.logo__text{
+	color: white;
+}
+.nav{
+ 	display: inline-block;
+ 	width:80%;
+}
+.nav__li{
+	list-style:none;
+	display: inline-block;
+	width: 30%;
+}
+.nav__text{
+	color:white;
+}

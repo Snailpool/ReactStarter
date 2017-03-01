@@ -14,6 +14,8 @@ react-router
 
 eslint (airbnb rules)
 
+webpack 2 
+
 ## 缺什麼
 node server
 

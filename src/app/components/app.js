@@ -14,7 +14,7 @@ class App extends React.Component {
 					</div>
 					<nav styleName="nav">
 						<ul>
-						<li styleName="nav__li"><Link styleName="nav__text" to="/home">首頁</Link></li>
+						<li styleName="nav__li"><Link styleName="nav__text" to="/">首頁</Link></li>
 						<li styleName="nav__li"><Link styleName="nav__text" to="/about">下一頁</Link></li>
 						</ul>
 					</nav>
@@ -27,5 +27,4 @@ class App extends React.Component {
 	}
 }
 
-export default CSSModules(App, styles)
- 
+export default CSSModules(App, styles);

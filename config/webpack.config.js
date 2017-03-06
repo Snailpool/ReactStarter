@@ -5,7 +5,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // envieroment setting
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
-
 let plugins = [];
 let cssLoader = {};
 let cssIdentName = '';
@@ -20,12 +19,22 @@ if (PRODUCTION) {
 				{
 					loader: 'css-loader',
 					options: {
-						localIdentName: cssIdentName
+						localIdentName: cssIdentName,
+						importLoaders: 1,
+						modules: true
 					}
 				},
 				{
-						loader: 'postcss-loader'
-				}
+					loader: 'postcss-loader',	// TODO: 紀錄下來：卡了五小時結果是沒升級 => 先查詢相依版本再改寫法
+					options: {
+		              plugins: function () {
+		                return [
+		                  require('precss'),
+		                  require('autoprefixer')
+		                ];
+		              }
+		            }
+		        }
 			]
 		});
 	plugins = [
@@ -57,11 +66,21 @@ else if (DEVELOPMENT) {
 		{
 			loader: 'css-loader',
 			options: {
-				localIdentName: cssIdentName
+				localIdentName: cssIdentName,
+				importLoaders: 2,
+				modules: true 	// default css module
 			}
 		},
 		{
-			loader: 'postcss-loader'
+			loader: 'postcss-loader',
+			options: {
+		              plugins: function () {
+		                return [
+		                  require('precss'),
+		                  require('autoprefixer')
+		                ];
+		              }
+		            }
 		}
 	];
 }
@@ -98,7 +117,7 @@ module.exports = {
 				test: /\.css$/,
 				use: cssLoader,
 				include: [
-					path.resolve(__dirname, '../src/app/')
+					path.resolve(__dirname, '../src/app/components/')
 				]
 			}
 		]

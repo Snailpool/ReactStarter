@@ -8,6 +8,7 @@
    "rules": {
      "arrow-body-style": ["error", "always"],
      "no-console": 0,
+     "comma-dangle": ["error", "never"],
     "indent": ["error", "tab"],
       "no-tabs": 0 // because airbnb says:no tab
    }

@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 // envieroment setting
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
@@ -16,25 +16,38 @@ if (PRODUCTION) {
 	cssLoader =
 		ExtractTextPlugin.extract({
 			fallback: 'style-loader',
-			use: {
-				loader: 'css-loader',
-				options: {
-					localIdentName: cssIdentName
+			use: [
+				{
+					loader: 'css-loader',
+					options: {
+						localIdentName: cssIdentName
+					}
+				},
+				{
+						loader: 'postcss-loader'
 				}
-			}
+			]
 		});
 	plugins = [
-		new ExtractTextPlugin('[name].bundle.css'),
+		new ExtractTextPlugin('[name].[chunkhash].css'),
 		new webpack.optimize.UglifyJsPlugin({
 			beautify: false,
 			comments: false
+		}),
+		new HtmlWebpackPlugin( { template: './index-tmp.html' } ),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
 		})
 	];
 }
 // if it's development time
 else if (DEVELOPMENT) {
 	plugins = [
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin()
+    // prints more readable module names in the browser console on HMR updates
 	];
 	cssIdentName = '[path][name]---[local]';
 	cssLoader = [
@@ -46,6 +59,9 @@ else if (DEVELOPMENT) {
 			options: {
 				localIdentName: cssIdentName
 			}
+		},
+		{
+			loader: 'postcss-loader'
 		}
 	];
 }
@@ -53,11 +69,11 @@ else if (DEVELOPMENT) {
 // main webpack config setting
 module.exports = {
 	entry: {
-		app: './src/app/index.js'	// in case there are another apps
+		app: ['react-hot-loader/patch','./src/app/index.js']	// in case there are another apps
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist'),
-		filename: '[name].bundle.js',
+		filename: PRODUCTION ? '[name].[chunkhash].js' : '[name].bundle.js',
 		publicPath: '/dist'
 	},
 	devtool: 'source-map',
@@ -95,5 +111,5 @@ module.exports = {
 	},
 	plugins: plugins
 }
-
+// TODO: 分檔案
 

@@ -30,8 +30,7 @@ if (PRODUCTION) {
 		              plugins: function () {
 		                return [
 							require('postcss-import'),
-							require('precss'),
-							require('autoprefixer')
+							require('postcss-cssnext')
 		                ];
 		              }
 		            }
@@ -77,9 +76,8 @@ else if (DEVELOPMENT) {
 			options: {
 		              plugins: function () {
 		                return [
-		                  require('postcss-import'),
-		                  require('precss'),
-		                  require('autoprefixer')
+		                 	require('postcss-import'),
+							require('postcss-cssnext')
 		                ];
 		              }
 		            }

@@ -10,8 +10,7 @@
 
 - postcss
  - postcss-import 
- - precss
- - autiprefixer
+ - cssnext(預設有 autiprefixer)
 
 - eslint
  - 預設使用 airbnb-base

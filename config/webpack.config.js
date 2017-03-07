@@ -29,8 +29,9 @@ if (PRODUCTION) {
 					options: {
 		              plugins: function () {
 		                return [
-		                  require('precss'),
-		                  require('autoprefixer')
+							require('postcss-import'),
+							require('precss'),
+							require('autoprefixer')
 		                ];
 		              }
 		            }
@@ -76,6 +77,7 @@ else if (DEVELOPMENT) {
 			options: {
 		              plugins: function () {
 		                return [
+		                  require('postcss-import'),
 		                  require('precss'),
 		                  require('autoprefixer')
 		                ];
@@ -130,5 +132,7 @@ module.exports = {
 	},
 	plugins: plugins
 }
+
 // TODO: 分檔案
+// TODO: Build 前要把舊的刪掉
 

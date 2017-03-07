@@ -1,8 +1,25 @@
-.app {
-    text-size-adjust: none;
-    font-family: helvetica, arial, sans-serif;
-    line-height: 200%;
-    padding: 6px 20px 30px;
-    display: flex;
-    color: green;
+@import "normalize.css";
+
+.header{
+	background-color: #008080;
+	height:75px;
+	margin-top: 0;
+}
+.ul{
+	margin:0;
+	height: 75px;
+}
+.list{
+	list-style: none;
+	height: 75px;
+	width: 10%;
+    vertical-align: middle;
+    display: table-cell;
+}
+.list:last-child{
+	clear: both;
+}
+.list > a{
+	color: white;
+	text-decoration: none;
 }

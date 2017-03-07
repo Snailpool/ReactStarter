@@ -1,24 +1,30 @@
-# ReactStarter
+# React starter
+
 方便日後使用的 react starter
 
 ## 有什麼
-babel 
 
-es6 support
+ - webpack 2 
+  - development 環境使用 webpack-dev-server + HMR
+   
 
-react-css-module
+- postcss
+ - postcss-import 
+ - precss
+ - autiprefixer
 
-react-hot-loader
+- eslint
+ - 預設使用 airbnb-base
 
-react-router
+- babel
+ 
+- react
+ - react-router
 
-eslint (airbnb rules)
+## 沒什麼
+  - redux
 
-webpack 2 
+## 還要加什麼:shipit:
+ - node server
+ - react-helmet
 
-## 缺什麼
-node server
-
-test
-
-postCSS

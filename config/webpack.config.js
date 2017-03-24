@@ -27,14 +27,14 @@ if (PRODUCTION) {
 				{
 					loader: 'postcss-loader',	// TODO: 紀錄下來：卡了五小時結果是沒升級 => 先查詢相依版本再改寫法
 					options: {
-		              plugins: function () {
-		                return [
-							require('postcss-import'),
-							require('postcss-cssnext')
-		                ];
-		              }
-		            }
-		        }
+						plugins: function () {
+							return [
+								require('postcss-import'),
+								require('postcss-cssnext')
+							];
+						}
+					}
+				}
 			]
 		});
 	plugins = [
@@ -48,6 +48,15 @@ if (PRODUCTION) {
 			'process.env': {
 				NODE_ENV: JSON.stringify('production')
 			}
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			minChunks: function (module) {
+				return module.context && module.context.indexOf('node_modules') !== -1;
+			}
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'manifest'
 		})
 	];
 }
@@ -74,13 +83,13 @@ else if (DEVELOPMENT) {
 		{
 			loader: 'postcss-loader',
 			options: {
-		              plugins: function () {
-		                return [
-		                 	require('postcss-import'),
-							require('postcss-cssnext')
-		                ];
-		              }
-		            }
+				plugins: function () {
+					return [
+						require('postcss-import'),
+						require('postcss-cssnext')
+					];
+				}
+			}
 		}
 	];
 }
@@ -88,7 +97,7 @@ else if (DEVELOPMENT) {
 // main webpack config setting
 module.exports = {
 	entry: {
-		app: ['react-hot-loader/patch','./src/app/index.js']	// in case there are another apps
+		app: ['react-hot-loader/patch', './src/app/index.js']	// in case there are another apps
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist'),

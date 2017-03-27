@@ -1,8 +1,8 @@
 import React from 'react';
 import { browserHistory, Router, Route, IndexRoute } from 'react-router';
-import App from './App';
-import About from './About';
-import Home from './Home';
+import App from './App/App';
+import About from './About/About';
+import Home from './Home/Home';
 import NoMatch from './Nomatch';
 
 //  the router of app

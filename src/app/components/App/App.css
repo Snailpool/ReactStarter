@@ -1,0 +1,25 @@
+@import "normalize.css";
+
+.header{
+	background-color: #008080;
+	height:75px;
+	margin-top: 0;
+}
+.ul{
+	margin:0;
+	height: 75px;
+}
+.list{
+	list-style: none;
+	height: 75px;
+	width: 10%;
+    vertical-align: middle;
+    display: table-cell;
+}
+.list:last-child{
+	clear: both;
+}
+.list > a{
+	color: white;
+	text-decoration: none;
+}

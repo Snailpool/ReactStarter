@@ -36,17 +36,21 @@ module.exports = webpackMerge(base, {
 					}
 				],
 				include: [
-					path.resolve(__dirname, '../src/app/components/')
+					path.join(__dirname, '../src/app/components/')
 				]
 			}
 		]
+	},
+	devServer: {
+		hot: true,
+		contentBase: path.join(__dirname, 'dist'),
+		publicPath: '/'
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin()
 	]
-})
-
+});
 
 
 
